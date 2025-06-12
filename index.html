@@ -3,73 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Calculateur BMI Pro - Fitness Tracker</title>
+    <meta name="description" content="Calculateur BMI professionnel avec calcul des macros et besoins caloriques">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <span id="my">My Portfolio</span>
-            <a class="navo" href="#about">About</a>
-            <a class="navo" href="#projects">Projects</a>
-            <a class="navo" href="#contact">Contact</a>
-        </nav>
+    <div class="background-overlay"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-dumbbell"></i> BMI PRO CALCULATOR</h1>
+            <p class="tagline">Transformez votre corps, transformez votre vie</p>
+        </div>
     </header>
 
-    <div class="container">
-        <section id="about">
-            <h2 id="ab">About Me</h2>
-            <p id="about-me">Hello, my name is Salah Eddine Ferhan and I am passionate about the field of IT. Currently a computer engineer, I have acquired solid skills in the development of innovative technological solutions, whether in software development, the creation of interactive applications or the optimization of systems. My curiosity, my analytical mind and my ability to solve complex problems allow me to meet technical challenges effectively. I am motivated by continuous learning and the creation of projects that combine performance and innovation.</p>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="projects">
-                <div class="project">
-                    <img src="./img project 1.jpg" alt="Project n1" >
-                    <h3>Project <span class="nmbr-clr">1</span></h3>
-                    <p class="dis-font">A clean, modern site with a soft gradient background and a mountain peak symbolizing peak productivity. Key features: <br>
-                        •	Bold typography and a Join Beta CTA. <br>
-                        •	Simple navigation highlighting How it works and Use cases.</p>
-                </div>
-                <div class="project">
-                    <img src="./img project2.jpg" alt="Project n2">
-                    <h3>Project <span class="nmbr-clr">2</span></h3>
-                    <p class="dis-font">A professional design with a blue-white palette showcasing carpentry expertise. Key features: <br>
-                        •	Multi-page layout with dynamic overlays. <br>
-                        •	Focus on products like sliding systems and custom solutions.
-                    </p>
-                </div>
-                <div class="project">
-                    <img src="./img project3.jpg" alt="Project n3">
-                    <h3>Project <span class="nmbr-clr">3</span></h3>
-                    <p class="dis-font">UA sleek, minimal site for an architectural firm. Key features: <br>
-                        •	Bold headline: “Where innovation meets architecture.” <br>
-                        •	Grid-based layout with stunning imagery. <br>
-                        •	Focus on modern design and functionality.</p>
-                </div>
-                <div class="project">
-                    <img src="./img project4.jpg" alt="Project n4">
-                    <h3>Project <span class="nmbr-clr">4</span></h3>
-                    <p class="dis-font">C'est un site dédié aux etudiants de la grande et celebre ecole Supemir pour assurer leur liaison avec les cours et les devoir a rendre. j'ai emploiyer des couleur vive et plaisantes pour 
-                    </p>
-                </div>
+    <main class="main-container">
+        <div class="calculator-card">
+            <div class="card-header">
+                <h2><i class="fas fa-calculator"></i> Calculateur de Macros</h2>
+                <p class="subtitle">Obtenez votre plan nutritionnel personnalisé basé sur vos objectifs</p>
             </div>
-        </section>
 
-       
-    </div>
+            <form id="macroForm" class="macro-form">
+                <div class="form-row">
+                    <div class="field gender-field">
+                        <label class="field-label">
+                            <i class="fas fa-venus-mars"></i> Sexe
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="male" checked>
+                                <span class="radio-custom"></span>
+                                <i class="fas fa-mars"></i> Homme
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="female">
+                                <span class="radio-custom"></span>
+                                <i class="fas fa-venus"></i> Femme
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-    <footer>
-        
-        <section id="contact">
-            <h3 class="nmbr-clr">Contact</h3>
-            <p>If you are interested in collaborating or have any questions, contact me!</p>
-            <p>Email : <a id="cntct-gml" href="mailto:ferhansalah@gmail.com">ferhansalah@gmail.com</a></p>
-            <p>GSM : <a id="cntct-gml" href="tel:+212688607598">+212688607598</a>
-            </p>
-        </section>
-        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+                <div class="form-row">
+                    <div class="field">
+                        <label class="field-label" for="age">
+                            <i class="fas fa-birthday-cake"></i> Âge
+                        </label>
+                        <input type="number" id="age" placeholder="Votre âge" min="10" max="100" required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="weight">
+                            <i class="fas fa-weight"></i> Poids (kg)
+                        </label>
+                        <input type="number" id="weight" placeholder="Votre poids" min="30" max="300" step="0.1" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label class="field-label" for="height">
+                            <i class="fas fa-ruler-vertical"></i> Taille (cm)
+                        </label>
+                        <input type="number" id="height" placeholder="Votre taille" min="120" max="250" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label class="field-label" for="activity">
+                            <i class="fas fa-running"></i> Niveau d'activité
+                        </label>
+                        <select id="activity" required>
+                            <option value="">Sélectionnez votre niveau</option>
+                            <option value="1.2">🛋️ Sédentaire (aucune activité physique)</option>
+                            <option value="1.375">🚶 Légèrement actif (1-3 jours/semaine)</option>
+                            <option value="1.55">🏃 Modérément actif (3-5 jours/semaine)</option>
+                            <option value="1.725">💪 Très actif (6-7 jours/semaine)</option>
+                            <option value="1.9">🏋️ Extrêmement actif (2x/jour, intense)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label class="field-label" for="goal">
+                            <i class="fas fa-target"></i> Objectif
+                        </label>
+                        <select id="goal" required>
+                            <option value="">Choisissez votre objectif</option>
+                            <option value="lose">📉 Perte de poids (-500 cal/jour)</option>
+                            <option value="maintain">⚖️ Maintien du poids</option>
+                            <option value="gain">📈 Prise de masse (+500 cal/jour)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="calculate-btn">
+                    <i class="fas fa-calculator"></i>
+                    <span>CALCULER MES MACROS</span>
+                    <div class="btn-overlay"></div>
+                </button>
+            </form>
+
+            <div id="results" class="results-container"></div>
+        </div>
+
+        <div class="info-cards">
+            <div class="info-card">
+                <i class="fas fa-info-circle"></i>
+                <h3>BMI</h3>
+                <p>Indice de Masse Corporelle pour évaluer votre poids santé</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-fire"></i>
+                <h3>Calories</h3>
+                <p>Besoins énergétiques quotidiens selon votre métabolisme</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Macros</h3>
+                <p>Répartition optimale des protéines, lipides et glucides</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 BMI Pro Calculator. Transformez votre corps avec la science.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
