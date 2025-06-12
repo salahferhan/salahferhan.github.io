@@ -1,119 +1,495 @@
-body {
+/* ===== RESET & BASE STYLES ===== */
+* {
     margin: 0;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
-    background-color: #000000;
-    color: #266d43;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #2e2e2e;
-    color: #266d43;
-    position: fixed ;
+:root {
+    --primary-red: #e60000;
+    --secondary-red: #ff4d4d;
+    --dark-red: #cc0000;
+    --gold: #ffd700;
+    --dark-bg: #0a0a0a;
+    --card-bg: rgba(0, 0, 0, 0.85);
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    --gradient-primary: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    --gradient-gold: linear-gradient(135deg, var(--gold), #ffed4e);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: var(--dark-bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+body::before {
+    content: '';
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 17px 0;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23000000;stop-opacity:1" /><stop offset="50%" style="stop-color:%231a1a1a;stop-opacity:1" /><stop offset="100%" style="stop-color:%23000000;stop-opacity:1" /></linearGradient><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23333333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="1920" height="1080" fill="url(%23grad1)"/><rect width="1920" height="1080" fill="url(%23grid)"/><text x="960" y="200" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" text-anchor="middle" fill="%23e60000" opacity="0.1">NO PAIN NO GAIN</text><text x="960" y="320" font-family="Arial Black, sans-serif" font-size="160" font-weight="900" text-anchor="middle" fill="%23ff4d4d" opacity="0.1">GYM</text></svg>') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -2;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: -1;
+}
+
+/* ===== HEADER ===== */
+.header {
     text-align: center;
-}
-#ab{
-    margin-top: 145px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
 }
 
-.navo {
-    margin: 20px 0;
-    margin-left: px;
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.2em;
+.header-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(230, 0, 0, 0.5);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.tagline {
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.container {
-    width: 80%;
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
-section {
-    margin: 50px 0;
+/* ===== CALCULATOR CARD ===== */
+.calculator-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px var(--shadow-dark);
+    position: relative;
+    overflow: hidden;
 }
 
-h2 {
+.calculator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.card-header {
     text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
-.projects {
+.card-header h2 {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ===== FORM STYLES ===== */
+.macro-form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.project {
-    background-color: #2e2e2e;
-    color: #ffffff;
-    border: 0px solid #ddd;
-    border-radius: 5px;
-    width: 30%;
-    margin: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.form-row:has(.field:nth-child(2)) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.field-label i {
+    color: var(--secondary-red);
+    width: 16px;
+}
+
+/* ===== INPUT STYLES ===== */
+input[type="number"], select {
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+input[type="number"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--secondary-red);
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #1a1a1a;
+    color: var(--text-light);
+    padding: 0.5rem;
+}
+
+/* ===== RADIO BUTTONS ===== */
+.gender-field {
+    grid-column: 1 / -1;
+}
+
+.radio-group {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.5rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.radio-label:hover {
+    color: var(--text-light);
+}
+
+.radio-label input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.radio-custom::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--secondary-red);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+    border-color: var(--secondary-red);
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-label input[type="radio"]:checked ~ * {
+    color: var(--secondary-red);
+}
+
+/* ===== CALCULATE BUTTON ===== */
+.calculate-btn {
+    position: relative;
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.btn-overlay {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(230, 0, 0, 0.4);
+}
+
+.calculate-btn:hover .btn-overlay {
+    left: 100%;
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== RESULTS ===== */
+.results-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 215, 0, 0.1));
+    border-radius: 15px;
+    border: 1px solid rgba(255, 77, 77, 0.2);
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
+.results-container.show {
+    display: block;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.results-header {
     text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-.project img {
-    max-width: 100%;
-    border-radius: 5px;
+.results-header h3 {
+    color: var(--secondary-red);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.project h3 {
-    margin: 15px 0 10px;
-    font-size: 1.5em;
+.bmi-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.result-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.25rem;
+    border-radius: 12px;
     text-align: center;
-    padding: 20px 0;
-    margin-top: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
 }
 
-footer p {
-    margin: 0;
+.result-item:hover {
+    transform: translateY(-3px);
 }
 
-#my{
-  margin-right: 600px;  
-  font-size: 50px;
-
+.result-icon {
+    font-size: 1.5rem;
+    color: var(--secondary-red);
+    margin-bottom: 0.5rem;
 }
 
-#about-me{
-    font-family: Arial, Helvetica, sans-serif;
+.result-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.result-value {
+    color: var(--text-light);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.result-unit {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* ===== INFO CARDS ===== */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem auto;
+    max-width: 800px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 15px;
     text-align: center;
-    color: #fff;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
-#cntct-gml{
-    color: #266d43;
-    ;
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--secondary-red);
 }
 
-.nmbr-clr{
-    color: #266d43;
+.info-card i {
+    font-size: 2rem;
+    color: var(--secondary-red);
+    margin-bottom: 1rem;
 }
 
-.dis-font{
-    font-family: Arial, Helvetica, sans-serif;
+.info-card h3 {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    margin-top: 3rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
+    }
+    
+    .calculator-card {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+    
+    .form-row:has(.field:nth-child(2)) {
+        grid-template-columns: 1fr;
+    }
+    
+    .radio-group {
+        justify-content: center;
+    }
+    
+    .info-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 2rem;
+    }
+    
+    .calculator-card {
+        padding: 1rem;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
